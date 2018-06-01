@@ -1,4 +1,6 @@
-package com.lukaklacar.aiengine.chain;
+package com.lukaklacar.aiengine.graph;
+
+import com.lukaklacar.aiengine.Element;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +24,7 @@ public class Graph<T extends Element> {
                 .orElse(null);
     }
 
-    private void connect(Node node1, Node node2) {
+    private void connect(Node<T> node1, Node<T> node2) {
         node1.add(node2);
         node2.setParent(node1);
     }

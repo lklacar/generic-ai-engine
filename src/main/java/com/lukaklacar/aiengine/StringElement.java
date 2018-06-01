@@ -1,4 +1,4 @@
-package com.lukaklacar.aiengine.chain;
+package com.lukaklacar.aiengine;
 
 public class StringElement extends Element {
     private String value;

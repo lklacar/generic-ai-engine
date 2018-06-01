@@ -1,4 +1,4 @@
-package com.lukaklacar.aiengine.chain;
+package com.lukaklacar.aiengine.util;
 
 import java.util.List;
 import java.util.Random;

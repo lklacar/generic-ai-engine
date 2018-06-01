@@ -1,4 +1,4 @@
-package com.lukaklacar.aiengine.chain;
+package com.lukaklacar.aiengine;
 
 public abstract class Element {
 

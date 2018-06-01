@@ -1,8 +1,12 @@
-package com.lukaklacar.aiengine.chain;
+package com.lukaklacar.aiengine.ai;
+
+import com.lukaklacar.aiengine.Element;
+import com.lukaklacar.aiengine.graph.Graph;
+import com.lukaklacar.aiengine.graph.Node;
+import com.lukaklacar.aiengine.util.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class ArtificialIntelligence<T extends Element> {
@@ -29,11 +33,12 @@ public class ArtificialIntelligence<T extends Element> {
         result.add(selectedNode);
 
         for (int i = 0; i < size; i++) {
-            Node nextNode = next(selectedNode);
-            result.add(nextNode);
-            selectedNode = nextNode;
+            if (selectedNode != null) {
+                Node<T> nextNode = next(selectedNode);
+                result.add(nextNode);
+                selectedNode = nextNode;
+            }
         }
-
 
         return result.stream().map(Node::getItem).collect(Collectors.toList());
     }

@@ -1,4 +1,6 @@
-package com.lukaklacar.aiengine.chain;
+package com.lukaklacar.aiengine.graph;
+
+import com.lukaklacar.aiengine.Element;
 
 import java.util.ArrayList;
 import java.util.List;
