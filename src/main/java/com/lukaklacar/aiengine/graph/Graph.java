@@ -31,6 +31,15 @@ public class Graph<T extends Element> {
 
     public void build() {
         for (int i = 0; i < items.size() - 1; i++) {
+
+            if(i % 2000 == 0){
+                System.out.println(((float)i / (float)items.size()) * 100 + "%");
+            }
+
+            if(((float)i / (float)items.size()) * 100 > 50){
+                break;
+            }
+
             T item1 = items.get(i);
             T item2 = items.get(i + 1);
             Node<T> node1 = new Node<>(item1);
