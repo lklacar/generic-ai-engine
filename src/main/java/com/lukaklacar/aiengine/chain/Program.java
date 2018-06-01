@@ -1,5 +1,6 @@
 package com.lukaklacar.aiengine.chain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,16 +13,16 @@ public class Program {
                 "" +
                 "The most notable cyclone of the season was Hurricane Gilbert, which at the time was the strongest Atlantic hurricane on record. The hurricane tracked through the Caribbean Sea and the Gulf of Mexico and caused devastation in Mexico and many island nations, particularly Jamaica. Its passage caused $2.98 billion in damage (1988 USD)[nb 1] and more than 300 deaths, mostly in Mexico. Hurricane Joan, striking Nicaragua as a Category 4 hurricane, caused about US$1.87 billion in damage and more than 200 deaths. The hurricane crossed into the eastern Pacific Ocean and was reclassified as Tropical Storm Miriam.";
 
-        List<Object> items = List.of(s.split(" "));
+        List<StringElement> items = List.of(s.split(" ")).stream().map(StringElement::new).collect(Collectors.toList());
 
-        Graph graph = new Graph(items);
+        Graph<StringElement> graph = new Graph<>(items);
         graph.build();
 
-        ArtificialIntelligence ai = new ArtificialIntelligence(graph);
+        ArtificialIntelligence<StringElement> ai = new ArtificialIntelligence<>(graph);
 
-        List<String> res = ai.generate(1000).stream().map(item -> (String)item).collect(Collectors.toList());
+        List<StringElement> res = new ArrayList<>(ai.generate(1000));
 
-        System.out.println(res.stream().collect(Collectors.joining(" ")));
+        System.out.println(res.stream().map(StringElement::getValue).collect(Collectors.joining(" ")));
 
     }
 }

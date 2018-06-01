@@ -4,18 +4,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Graph {
+public class Graph<T extends Element> {
 
-    private List<Object> items;
-    private Set<Node> rootNodes;
+    private List<T> items;
+    private Set<Node<T>> rootNodes;
 
-    public Graph(List<Object> items) {
+    public Graph(List<T> items) {
         this.items = items;
-        rootNodes = new HashSet<Node>();
+        rootNodes = new HashSet<>();
     }
 
-
-    private Node findNode(Node node) {
+    private Node<T> findNode(Node<T> node) {
         return rootNodes
                 .stream()
                 .filter(rootNode -> rootNode.id() == node.id())
@@ -30,13 +29,13 @@ public class Graph {
 
     public void build() {
         for (int i = 0; i < items.size() - 1; i++) {
-            Object item1 = items.get(i);
-            Object item2 = items.get(i + 1);
-            Node node1 = new Node(item1);
-            Node node2 = new Node(item2);
+            T item1 = items.get(i);
+            T item2 = items.get(i + 1);
+            Node<T> node1 = new Node<>(item1);
+            Node<T> node2 = new Node<>(item2);
 
-            Node rootNode1 = findNode(node1);
-            Node rootNode2 = findNode(node2);
+            Node<T> rootNode1 = findNode(node1);
+            Node<T> rootNode2 = findNode(node2);
 
             if (rootNode1 == null) {
                 rootNodes.add(node1);
@@ -52,19 +51,19 @@ public class Graph {
         }
     }
 
-    public List<Object> getItems() {
+    public List<T> getItems() {
         return items;
     }
 
-    public void setItems(List<Object> items) {
+    public void setItems(List<T> items) {
         this.items = items;
     }
 
-    public Set<Node> getRootNodes() {
+    public Set<Node<T>> getRootNodes() {
         return rootNodes;
     }
 
-    public void setRootNodes(Set<Node> rootNodes) {
+    public void setRootNodes(Set<Node<T>> rootNodes) {
         this.rootNodes = rootNodes;
     }
 }

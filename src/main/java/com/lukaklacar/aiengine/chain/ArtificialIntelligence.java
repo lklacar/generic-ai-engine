@@ -1,20 +1,20 @@
 package com.lukaklacar.aiengine.chain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
-import static java.lang.Math.toIntExact;
+public class ArtificialIntelligence<T extends Element> {
 
-public class ArtificialIntelligence {
+    private Graph<T> graph;
 
-    private Graph graph;
-
-    public ArtificialIntelligence(Graph graph) {
+    public ArtificialIntelligence(Graph<T> graph) {
         this.graph = graph;
     }
 
-    private Node next(Node prev) {
-        Node nextNode = RandomUtil.choose(prev.getChildren());
+    private Node<T> next(Node<T> prev) {
+        Node<T> nextNode = RandomUtil.choose(prev.getChildren());
 
         if (nextNode == null) {
             return RandomUtil.choose(new ArrayList<>(graph.getRootNodes()));
@@ -23,9 +23,9 @@ public class ArtificialIntelligence {
         return nextNode;
     }
 
-    public List<Object> generate(int size) {
-        List<Node> result = new ArrayList<>();
-        Node selectedNode = RandomUtil.choose(new ArrayList<>(graph.getRootNodes()));
+    public List<T> generate(int size) {
+        List<Node<T>> result = new ArrayList<>();
+        Node<T> selectedNode = RandomUtil.choose(new ArrayList<>(graph.getRootNodes()));
         result.add(selectedNode);
 
         for (int i = 0; i < size; i++) {

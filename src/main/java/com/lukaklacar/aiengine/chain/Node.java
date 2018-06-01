@@ -1,41 +1,40 @@
 package com.lukaklacar.aiengine.chain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class Node {
+public class Node<T extends Element> {
 
-    private Object item;
-    private List<Node> children;
+    private T item;
+    private List<Node<T>> children;
     private Node parent;
 
-    public Node(Object item) {
+    public Node(T item) {
         this.item = item;
-        children = new ArrayList<Node>();
+        children = new ArrayList<>();
     }
 
-    public void add(Node child) {
+    public void add(Node<T> child) {
         this.children.add(child);
     }
 
     public int id() {
-        return item.hashCode();
+        return item.id();
     }
 
-    public Object getItem() {
+    public T getItem() {
         return item;
     }
 
-    public void setItem(Object item) {
+    public void setItem(T item) {
         this.item = item;
     }
 
-    public List<Node> getChildren() {
+    public List<Node<T>> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Node> children) {
+    public void setChildren(List<Node<T>> children) {
         this.children = children;
     }
 
